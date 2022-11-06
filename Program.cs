@@ -1,72 +1,17 @@
-﻿string[] actions = new string[4] { "pick", "drop", "pull", "search" };
-List<string> items = new List<string>();
+﻿string[] victoriaLine = new string[16] { "brixton", "stockwell", "vauxhall", "pimlico", "victoria", "green park", "oxford circus", "warran street", "euston", "king's cross", "highbury & islington", "finsbury park", "seven sisters", "tottenham hale", "blackhorse road", "walthamstow central" };
 
-while (true)
+
+Console.Write("Station 1: ");
+var station1 = Console.ReadLine();
+Console.Write("Station 2: ");
+var station2 = Console.ReadLine();
+
+if (station1 != null && station2 != null)
 {
-    Console.Write("Enter action (pick/drop/pull/search): ");
-    var action = Console.ReadLine();
-
-    if (action != null)
-    {
-        if (actions.Contains(action))
-        {
-            switch (action)
-            {
-                case "pick":
-
-                    Console.Write("What item? ");
-                    var item = Console.ReadLine();
-                    if (item != null)
-                    {
-                        items.Add(item);
-                        Console.WriteLine("Added item!");
-                        
-                    }
-                    continue;
-
-                case "drop":
-                    if (items.Count > 0)
-                    {
-                        Console.Write("What item to drop? ");
-                        var drop = Console.ReadLine();
-                        if (drop != null)
-                        {
-                            if (items.Contains(drop))
-                            {
-                                items.Remove(drop);
-                                Console.WriteLine("Removed item!");
-                            }
-                            else
-                            {
-                                Console.WriteLine("That item isn't in your inventory...");
-                            }
-                        }
-                    }
-                    
-                    continue;
-
-                case "pull":
-                    if (items.Count > 0)
-                    {
-                        var Random = new Random();
-                        int i = Random.Next(items.Count);
-                        Console.WriteLine(items[i]);
-                    }
-                    
-                    continue;
-
-                case "search":
-                    foreach(var j in items)
-                    {
-                        Console.WriteLine(j);
-                    }
-                    continue;
-            }
-        }
-        else
-        {
-            Console.WriteLine("Please enter valid action");
-        }
-    }
-    
+    var station1low = station1.ToLower().ToString();
+    var station2low = station2.ToLower().ToString();
+    int index1 = Array.IndexOf(victoriaLine, station1low);
+    int index2 = Array.IndexOf(victoriaLine, station2low);
+    Console.WriteLine(station1 + " to " + station2 + " is " + (index2 - index1) + " stops");
 }
+
